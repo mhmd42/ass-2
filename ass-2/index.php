@@ -3,7 +3,7 @@ $url = 'https://data.gov.bh/api/explore/v2.1/catalog/datasets/01-statistics-of-s
 $response = file_get_contents($url);
 $data = json_decode($response, true);
 ?>
-
+<!-- html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
