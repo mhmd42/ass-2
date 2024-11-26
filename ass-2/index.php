@@ -3,7 +3,7 @@ $url = 'https://data.gov.bh/api/explore/v2.1/catalog/datasets/01-statistics-of-s
 $response = file_get_contents($url);
 $data = json_decode($response, true);
 ?>
-<!-- html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,75 +14,55 @@ $data = json_decode($response, true);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     
     <style>
-        body {
+        body{
+            background-color: white;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
         }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
+        h1{
+            font-family: Arial, sans-serif;
+            color: black;
             text-align: center;
+            background-color: #f4f4f9;
+            border-radius: 10px;
         }
-
-        h1 {
-            font-size: 2rem;
+        article{
+            background-color: white;
+            padding: 1rem;
+            margin: 1rem;
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 1em;
-            font-family: Arial, sans-serif;
-        }
-
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-
-
-        th {
-            background-color: gray;
-            color: white;
-            text-transform: uppercase;
-        }
+    
     </style>
 
 </head>
 <body>
     <main>
-        <h1>UOB Student Nationality</h1>
-        <table class="overflow-auto">
-            <thead>
-                <tr>
-                    <th>Year</th>
-                    <th>Semester</th>
-                    <th>The Programs</th>
-                    <th>Nationality</th>
-                    <th>Colleges</th>
-                    <th>Number of Students</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php foreach($data['results'] as $result): ?> 
-                    <tr>
-                        <td><?= htmlspecialchars($result['year']) ?></td>
-                        <td><?= htmlspecialchars($result['semester']) ?></td>
-                        <td><?= htmlspecialchars($result['the_programs']) ?></td>
-                        <td><?= htmlspecialchars($result['nationality']) ?></td>
-                        <td><?= htmlspecialchars($result['colleges']) ?></td>
-                        <td><?= htmlspecialchars($result['number_of_students']) ?></td>
-                    </tr>              
-            <?php endforeach; ?>
-            </tbody>
-        </table>
+        <article>
+            <h1>UOB Student Nationality</h1>
+                <table class="striped" class="overflow-auto">
+                    <thead data-theme="light">
+                        <tr>
+                            <th>Year</th>
+                            <th>Semester</th>
+                            <th>The Programs</th>
+                            <th>Nationality</th>
+                            <th>Colleges</th>
+                            <th>Number of Students</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($data['results'] as $result): ?> 
+                        <tr data-theme="light">
+                            <td><?= htmlspecialchars($result['year']) ?></td>
+                            <td><?= htmlspecialchars($result['semester']) ?></td>
+                            <td><?= htmlspecialchars($result['the_programs']) ?></td>
+                            <td><?= htmlspecialchars($result['nationality']) ?></td>
+                            <td><?= htmlspecialchars($result['colleges']) ?></td>
+                            <td><?= htmlspecialchars($result['number_of_students']) ?></td>
+                        </tr>              
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+        </article>
     </main>
 </body>
 </html>
